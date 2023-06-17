@@ -47,7 +47,7 @@ def stop_spark(spark):
 
 
 if __name__ == "__main__":
-    config_location = "C:\\Users\\joseph.mead\\Dev\\spark_injection_project\\yamls\\"
+    config_location = ".\\yamls\\"
     config_name = "customer.yml"
     controller(config_location,config_name)
 

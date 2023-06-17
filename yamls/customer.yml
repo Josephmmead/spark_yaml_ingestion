@@ -1,12 +1,12 @@
 inputs:
   customer:
-    location: 'C:\\Users\\joseph.mead\\Dev\\spark_injection_project\\data\\customer.csv'
+    location: '.\data\customer.csv'
     type: 'type1'
     dataframe: 'customer_df'
     schema: customer_schema
 
   transaction:
-    location: 'C:\\Users\\joseph.mead\\Dev\\spark_injection_project\\data\\transactions.csv'
+    location: '.\data\customer.csv'
     type: 'type1'
     dataframe: 'transaction_df'
     schema: transaction_schema
