@@ -28,12 +28,19 @@ def controller(config_location,config_name):
         command_name = sql_command['name']
         query = sql_command['query']
         temp_table = sql_command['temp_table']
+        drop_tables = sql_command['drop_temp_views']
 
         result_df = spark.sql(query)
         if temp_table:
+            print(f'creating temp view: {command_name}')
             result_df.createOrReplaceTempView(command_name)
 
         result_df.show()
+
+        # if len(drop_tables) >= 1:
+        #     for table in drop_tables:
+        #         print(f'dropping temp view: {table}')
+        #         spark.catalog.dropTempView(table)
 
     stop_spark(spark)
 

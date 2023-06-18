@@ -15,9 +15,11 @@ sql_statements:
   - name: join_dataframes
     query: SELECT customer_df.customer, customer_df.customer_id, transaction_df.transaction_id, transaction_df.transaction_amount FROM customer_df JOIN transaction_df On customer_df.customer_id = transaction_df.customer_id
     temp_table: true
+    drop_temp_views: ['customer_df', 'transaction_df']
   - name: greater_than_100
     query: Select * from join_dataframes where transaction_amount > 100.00
     temp_table: false
+    drop_temp_views: []
     
 
 
