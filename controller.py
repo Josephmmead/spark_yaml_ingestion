@@ -37,10 +37,10 @@ def controller(config_location,config_name):
 
         result_df.show()
 
-        # if len(drop_tables) >= 1:
-        #     for table in drop_tables:
-        #         print(f'dropping temp view: {table}')
-        #         spark.catalog.dropTempView(table)
+        if len(drop_tables) >= 1:
+            for table in drop_tables:
+                print(f'dropping temp view: {table}')
+                spark.catalog.dropTempView(table)
 
     stop_spark(spark)
 
