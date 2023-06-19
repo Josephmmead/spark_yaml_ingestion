@@ -1,15 +1,21 @@
 inputs:
   customer:
-    location: '.\spark_yaml_ingestion\data\customer.csv'
-    type: 'type1'
-    dataframe: 'customer_df'
+    location: .\spark_yaml_ingestion\data\customer.csv
+    type: type1
+    dataframe: customer_df
     schema: customer_schema
 
   transaction:
-    location: '.\spark_yaml_ingestion\data\transactions.csv'
-    type: 'type1'
-    dataframe: 'transaction_df'
+    location: .\spark_yaml_ingestion\data\transactions.csv
+    type: type1
+    dataframe: transaction_df
     schema: transaction_schema
+  
+  demographics:
+    location: .\spark_yaml_ingestion\data\demographics.csv
+    type: type1
+    dataframe: demographics_df
+    schema: demographic_schema
 
 sql_statements:
   - name: join_dataframes
@@ -20,6 +26,12 @@ sql_statements:
     query: Select * from join_dataframes where transaction_amount > 100.00
     temp_table: false
     drop_temp_views: []
-    
-
+  - name: add_demographics
+    query: SELECT join_dataframes.*, demographics_df.gender, demographics_df.age, demographics_df.country, demographics_df.state, demographics_df.salary from join_dataframes JOIN demographics_df On join_dataframes.customer_id = demographics_df.customer_id
+    temp_table: true
+    drop_temp_views: ['join_dataframes']
+  - name: total_transactions
+    query: SELECT customer, customer_id, SUM(transaction_amount) AS total_amount, gender, age, country, state, salary FROM add_demographics GROUP BY customer, customer_id, gender, age, country, state, salary
+    temp_table: false
+    drop_temp_views: ['add_demographics']
 
