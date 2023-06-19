@@ -1,12 +1,12 @@
 inputs:
   customer:
-    location: '.\data\customer.csv'
+    location: '.\spark_yaml_ingestion\data\customer.csv'
     type: 'type1'
     dataframe: 'customer_df'
     schema: customer_schema
 
   transaction:
-    location: '.\data\transactions.csv'
+    location: '.\spark_yaml_ingestion\data\transactions.csv'
     type: 'type1'
     dataframe: 'transaction_df'
     schema: transaction_schema

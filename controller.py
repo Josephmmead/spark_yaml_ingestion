@@ -3,12 +3,13 @@ import yaml
 from schemas.get_schemas import get_schema
 
 
-
 def controller(config_location,config_name):
     spark = get_spark()
+    yaml_path = config_location + config_name
 
-    with open(config_location+config_name, 'r') as f:
+    with open(yaml_path, 'r') as f:
         contents = yaml.safe_load(f)
+
 
     for input in contents['inputs']:
         csv_metadata = contents['inputs'][input] 
@@ -21,8 +22,6 @@ def controller(config_location,config_name):
         df = spark.read.csv(location, schema=schema)
         df.show()
         df.createOrReplaceTempView(table_name)
-        
-        
 
     for sql_command in contents['sql_statements']:
         command_name = sql_command['name']
@@ -52,10 +51,7 @@ def stop_spark(spark):
     spark.stop()
 
 
-
 if __name__ == "__main__":
-    config_location = ".\\yamls\\"
+    config_location = ".\\spark_yaml_ingestion\\yamls\\"
     config_name = "customer.yml"
     controller(config_location,config_name)
-
-
