@@ -22,14 +22,17 @@ sql_statements:
     query: SELECT customer_df.customer, customer_df.customer_id, transaction_df.transaction_id, transaction_df.transaction_amount FROM customer_df JOIN transaction_df On customer_df.customer_id = transaction_df.customer_id
     temp_table: true
     drop_temp_views: ['customer_df', 'transaction_df']
+
   - name: greater_than_100
     query: Select * from join_dataframes where transaction_amount > 100.00
     temp_table: false
     drop_temp_views: []
+
   - name: add_demographics
     query: SELECT join_dataframes.*, demographics_df.gender, demographics_df.age, demographics_df.country, demographics_df.state, demographics_df.salary from join_dataframes JOIN demographics_df On join_dataframes.customer_id = demographics_df.customer_id
     temp_table: true
     drop_temp_views: ['join_dataframes']
+    
   - name: total_transactions
     query: SELECT customer, customer_id, SUM(transaction_amount) AS total_amount, gender, age, country, state, salary FROM add_demographics GROUP BY customer, customer_id, gender, age, country, state, salary
     temp_table: false
