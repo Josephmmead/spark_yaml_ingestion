@@ -10,8 +10,6 @@ def controller(config_location, config_name):
     with open(yaml_path, 'r') as f:
         contents = yaml.safe_load(f)
 
-    temp_views_to_drop = []
-
     for input in contents['inputs']:
         csv_metadata = contents['inputs'][input]
         location = csv_metadata['location']
@@ -32,7 +30,6 @@ def controller(config_location, config_name):
         if temp_table:
             print(f'Creating temp view: {command_name}')
             spark.sql(query).createOrReplaceTempView(command_name)
-            temp_views_to_drop.append(command_name)
         else:
             print(f'Executing SQL statement: {command_name}')
             result_df = spark.sql(query)
@@ -43,10 +40,6 @@ def controller(config_location, config_name):
                 print(f'Dropping temp view: {table}')
                 spark.catalog.dropTempView(table)
 
-    # Drop all temporary views created during batch processing
-    for temp_view in temp_views_to_drop:
-        print(f'Dropping temp view: {temp_view}')
-        spark.catalog.dropTempView(temp_view)
 
     stop_spark(spark)
 
