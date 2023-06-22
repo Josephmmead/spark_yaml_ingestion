@@ -17,7 +17,6 @@ def controller(config_location, config_name):
         table_name = csv_metadata['dataframe']
         file_type = csv_metadata['type']
 
-
         df = spark.read.csv(location, schema=schema)
         df.createOrReplaceTempView(table_name)
 
@@ -40,11 +39,10 @@ def controller(config_location, config_name):
                 print(f'Dropping temp view: {table}')
                 spark.catalog.dropTempView(table)
 
-
     spark.stop()
     
 
 if __name__ == "__main__":
     config_location = ".\\spark_yaml_ingestion\\yamls\\"
-    config_name = "customer.yml"
+    config_name = "customer_demo.yml"
     controller(config_location, config_name)
