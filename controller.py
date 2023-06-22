@@ -1,6 +1,6 @@
 from pyspark.sql import SparkSession
 import yaml
-from schemas.get_schemas import get_schema
+from get_schemas import get_schema
 
 
 def controller(config_location, config_name):
@@ -10,6 +10,13 @@ def controller(config_location, config_name):
     with open(yaml_path, 'r') as f:
         contents = yaml.safe_load(f)
 
+    process_inputs(contents, spark)
+    process_sql(contents, spark)
+
+    spark.stop()
+
+
+def process_inputs(contents, spark):
     for input in contents['inputs']:
         csv_metadata = contents['inputs'][input]
         location = csv_metadata['location']
@@ -20,6 +27,8 @@ def controller(config_location, config_name):
         df = spark.read.csv(location, schema=schema)
         df.createOrReplaceTempView(table_name)
 
+
+def process_sql(contents, spark):
     for sql_command in contents['sql_statements']:
         command_name = sql_command['name']
         query = sql_command['query']
@@ -38,11 +47,10 @@ def controller(config_location, config_name):
             for table in drop_tables:
                 print(f'Dropping temp view: {table}')
                 spark.catalog.dropTempView(table)
-
-    spark.stop()
     
 
 if __name__ == "__main__":
     config_location = ".\\spark_yaml_ingestion\\yamls\\"
     config_name = "customer_demo.yml"
+    # config_name = "customer.yml"
     controller(config_location, config_name)
