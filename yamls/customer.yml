@@ -32,9 +32,9 @@ sql_statements:
     query: SELECT join_dataframes.*, demographics_df.gender, demographics_df.age, demographics_df.country, demographics_df.state, demographics_df.salary from join_dataframes JOIN demographics_df On join_dataframes.customer_id = demographics_df.customer_id
     temp_table: true
     drop_temp_views: ['join_dataframes']
-    
+
   - name: total_transactions
-    query: SELECT customer, customer_id, SUM(transaction_amount) AS total_amount, gender, age, country, state, salary FROM add_demographics GROUP BY customer, customer_id, gender, age, country, state, salary
+    query: SELECT customer, customer_id, SUM(transaction_amount) AS total_amount, gender, age, country, state, salary FROM add_demographics GROUP BY customer, customer_id, gender, age, country, state, salary ORDER BY customer_id
     temp_table: false
     drop_temp_views: ['add_demographics']
 

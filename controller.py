@@ -4,7 +4,7 @@ from schemas.get_schemas import get_schema
 
 
 def controller(config_location, config_name):
-    spark = get_spark()
+    spark = SparkSession.builder.getOrCreate()
     yaml_path = config_location + config_name
 
     with open(yaml_path, 'r') as f:
@@ -17,7 +17,7 @@ def controller(config_location, config_name):
         table_name = csv_metadata['dataframe']
         file_type = csv_metadata['type']
 
-        print(f"location: {location}, table_name: {table_name}, file_type: {file_type}")
+
         df = spark.read.csv(location, schema=schema)
         df.createOrReplaceTempView(table_name)
 
@@ -41,16 +41,8 @@ def controller(config_location, config_name):
                 spark.catalog.dropTempView(table)
 
 
-    stop_spark(spark)
-
-
-def get_spark():
-    return SparkSession.builder.getOrCreate()
-
-
-def stop_spark(spark):
     spark.stop()
-
+    
 
 if __name__ == "__main__":
     config_location = ".\\spark_yaml_ingestion\\yamls\\"
