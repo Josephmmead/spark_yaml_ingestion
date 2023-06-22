@@ -8,13 +8,17 @@ inputs:
 sql_statements:
 
   - name: nationality_count
-    query: SELECT Nationality, COUNT(*) AS Count FROM customer_demo_df GROUP BY Nationality
-    temp_table: false
+    query: SELECT Nationality, COUNT(*) AS Total_Count FROM customer_demo_df GROUP BY Nationality
+    temp_table: true
     drop_temp_views: []
   
   - name: CreditScores_over_750
-    query: SELECT Nationality,  COUNT(*) AS Count FROM customer_demo_df WHERE CreditScore >= 750 GROUP BY Nationality ORDER BY Nationality
+    query: SELECT Nationality,  COUNT(*) AS Good_Credit_Count FROM customer_demo_df WHERE CreditScore >= 750 GROUP BY Nationality ORDER BY Nationality
+    temp_table: true
+    drop_temp_views: ['customer_demo_df']
+  
+  - name: final_df
+    query: SELECT nationality_count.nationality, nationality_count.Total_Count, CreditScores_over_750.Good_Credit_Count FROM nationality_count JOIN CreditScores_over_750 ON nationality_count.Nationality = CreditScores_over_750.Nationality ORDER BY Nationality
     temp_table: false
     drop_temp_views: []
-
 
