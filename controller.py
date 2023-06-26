@@ -50,7 +50,7 @@ def process_sql(contents, spark):
     
 
 if __name__ == "__main__":
-    config_location = ".\\spark_yaml_ingestion\\yamls\\"
+    config_location = ".\\yamls\\"
     config_name = "customer_demo.yml"
     # config_name = "customer.yml"
     controller(config_location, config_name)

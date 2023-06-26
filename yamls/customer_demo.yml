@@ -1,6 +1,6 @@
 inputs:
   customer:
-    location: .\spark_yaml_ingestion\data\customer_demo.csv
+    location: .\data\customer_demo.csv
     type: type1
     dataframe: customer_demo_df
     schema: customer_demographics_schema
