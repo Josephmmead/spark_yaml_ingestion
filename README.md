@@ -17,7 +17,7 @@ This project demonstrates how to ingest data into Spark using a YAML configurati
 
 3. pip install -r requirements.txt
 
-##Usage
+## Usage
 
 1. Ensure that your CSV and YAML configuration files are in the appropriate directory.
 
@@ -34,7 +34,7 @@ This project demonstrates how to ingest data into Spark using a YAML configurati
 
 7. Once the process is complete, the temporary views created during the execution will be automatically dropped.
 
-##Configuration
+## Configuration
 
 The YAML configuration file (customer_demo.yml in this example) should be structured as follows:
 
