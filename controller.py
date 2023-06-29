@@ -10,13 +10,6 @@ def controller(config_location, config_name):
     with open(yaml_path, 'r') as f:
         contents = yaml.safe_load(f)
 
-    process_inputs(contents, spark)
-    process_sql(contents, spark)
-
-    spark.stop()
-
-
-def process_inputs(contents, spark):
     for input in contents['inputs']:
         csv_metadata = contents['inputs'][input]
         location = csv_metadata['location']
@@ -27,8 +20,6 @@ def process_inputs(contents, spark):
         df = spark.read.csv(location, schema=schema)
         df.createOrReplaceTempView(table_name)
 
-
-def process_sql(contents, spark):
     for sql_command in contents['sql_statements']:
         command_name = sql_command['name']
         query = sql_command['query']
@@ -47,7 +38,8 @@ def process_sql(contents, spark):
             for table in drop_tables:
                 print(f'Dropping temp view: {table}')
                 spark.catalog.dropTempView(table)
-    
+
+    spark.stop()
 
 if __name__ == "__main__":
     config_location = ".\\yamls\\"

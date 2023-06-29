@@ -1,0 +1,12 @@
+inputs: 
+  customer: 
+    location: .\tests\test_resources\customer.csv
+    type: type1
+    dataframe: customer
+    schema: customer_schema
+    
+sql_statements: 
+  - name: sql1
+    query: SELECT * FROM customer
+    temp_table: True
+    drop_temp_views: []
