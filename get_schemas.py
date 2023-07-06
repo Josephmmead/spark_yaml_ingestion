@@ -69,4 +69,3 @@ def get_schema():
     schema_dict['customer_demographics_schema'] = customer_demographics_schema
 
     return schema_dict
-

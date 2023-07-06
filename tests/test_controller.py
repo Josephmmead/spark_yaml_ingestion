@@ -2,7 +2,6 @@ import unittest
 from unittest.mock import patch
 from pyspark.sql import SparkSession
 from controller import controller
-from get_schemas import get_schema
 
 config_location = "./tests/test_resources/"
 config_name = 'test_yaml.yaml'

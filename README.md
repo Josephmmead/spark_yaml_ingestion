@@ -28,7 +28,7 @@ This project demonstrates how to ingest data into Spark using a YAML configurati
 
 4. Save the changes and exit the text editor.
 
-5. Run the controller.py script to start the data ingestion process:
+5. Run the controller.py script to start the data ingestion process.
 
 6. Monitor the console output for progress updates and SQL statement results.
 
