@@ -40,11 +40,12 @@ def controller(config_location, config_name):
                 spark.catalog.dropTempView(table)
     
     for output in contents['outputs']:
+        name = output['name']
         output_df = spark.table(output['output_df'])
         file_format = output['target_file_format']
         output_location = output['output_location']
 
-        output_df.write.format(file_format).mode('overwrite').save(output_location, header=True)
+        output_df.write.format(file_format).mode('overwrite').save(output_location+name, header=True)
 
     spark.stop()
 

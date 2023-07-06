@@ -25,7 +25,7 @@ sql_statements:
 
   - name: greater_than_100
     query: Select * from join_dataframes where transaction_amount > 100.00
-    temp_table: false
+    temp_table: true
     drop_temp_views: []
 
   - name: add_demographics
@@ -35,6 +35,18 @@ sql_statements:
 
   - name: total_transactions
     query: SELECT customer, customer_id, SUM(transaction_amount) AS total_amount, gender, age, country, state, salary FROM add_demographics GROUP BY customer, customer_id, gender, age, country, state, salary ORDER BY customer_id
-    temp_table: false
+    temp_table: true
     drop_temp_views: ['add_demographics']
+
+outputs:
+
+  - name: Total_transactions_output
+    output_df: total_transactions
+    target_file_format: csv
+    output_location: .\output\customer\
+  
+  - name: Greater_than_100_output
+    output_df: greater_than_100
+    target_file_format: csv
+    output_location: .\output\customer\
 

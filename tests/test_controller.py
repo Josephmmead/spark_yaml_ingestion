@@ -15,7 +15,7 @@ class MyTestCase(unittest.TestCase):
         self.spark.stop()
 
     def test_controller(self):
-        output_path = './tests/test_resources/output/'
+        output_path = './tests/test_resources/output/test_output/'
         
         
         with patch('builtins.print') as mock_print:
@@ -32,9 +32,6 @@ class MyTestCase(unittest.TestCase):
 
         for file in output_list:
             os.remove(output_path+file)
-
-
-        
 
 
 if __name__ == '__main__':

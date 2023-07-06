@@ -27,6 +27,6 @@ outputs:
   - name: Demographic_output
     output_df: final_df
     target_file_format: json
-    output_location: .\output
+    output_location: .\output\customer_demo\
 
 

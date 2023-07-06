@@ -1,5 +1,7 @@
 .venv
-.spark-warehouse
+/spark-warehouse
 .vscode
-.__pycache__
-.output
+__pycache__
+/output
+/tests/test_resources/output
+/tests/test_resources/__pycache__
