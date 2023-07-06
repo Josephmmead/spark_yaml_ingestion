@@ -51,6 +51,6 @@ def controller(config_location, config_name):
 
 if __name__ == "__main__":
     config_location = ".\\yamls\\"
-    config_name = "customer_demo.yml"
-    # config_name = "customer.yml"
+    # config_name = "customer_demo.yml"
+    config_name = "customer.yml"
     controller(config_location, config_name)

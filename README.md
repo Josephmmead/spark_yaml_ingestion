@@ -87,7 +87,7 @@ The sql_statements section contains the SQL statements to be executed. Each stat
 The outputs section specifies the variables need to output the data from your sql queries into a file:
 
 - name: A descriptive name for the specific output.
-- output_df: The name of the DataFrame that you are wanting to have written out.
+- output_df: The name of the temp table that you are wanting to have written out.
 - target_file_format: Specifices the file type that you are wanting for your output file (ie csv, parquet, json, ect).
 - output_location: The location of where the written file will be written to.
 
