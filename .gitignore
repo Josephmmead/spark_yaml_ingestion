@@ -2,3 +2,4 @@
 .spark-warehouse
 .vscode
 .__pycache__
+.output

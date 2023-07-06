@@ -61,6 +61,13 @@ sql_statements:
     query: SELECT column1, AVG(column2) AS average FROM table2 GROUP BY column1
     temp_table: false
     drop_temp_views: []
+
+outputs:
+
+  - name: sample_output
+    output_df: final_df
+    target_file_format: csv
+    output_location: .\output
 ```
 
 The inputs section specifies the CSV files to be ingested. Each input should have a unique name and provide the following details:
@@ -76,5 +83,12 @@ The sql_statements section contains the SQL statements to be executed. Each stat
 - query: The SQL query to be executed.
 - temp_table: A boolean value indicating whether to create a temporary view for the query.
 - drop_temp_views: A list of temporary view names to be dropped after executing the query.
+
+The outputs section specifies the variables need to output the data from your sql queries into a file:
+
+- name: A descriptive name for the specific output.
+- output_df: The name of the DataFrame that you are wanting to have written out.
+- target_file_format: Specifices the file type that you are wanting for your output file (ie csv, parquet, json, ect).
+- output_location: The location of where the written file will be written to.
 
 Feel free to modify the configuration file according to your specific data ingestion requirements.

@@ -10,3 +10,9 @@ sql_statements:
     query: SELECT * FROM customer
     temp_table: True
     drop_temp_views: []
+
+outputs:
+  - name: test_output
+    output_df: sql1
+    target_file_format: csv
+    output_location: .\tests\test_resources\output\

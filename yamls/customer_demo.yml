@@ -19,6 +19,14 @@ sql_statements:
   
   - name: final_df
     query: SELECT nationality_count.nationality, nationality_count.Total_Count, CreditScores_over_750.Good_Credit_Count FROM nationality_count JOIN CreditScores_over_750 ON nationality_count.Nationality = CreditScores_over_750.Nationality ORDER BY Nationality
-    temp_table: false
+    temp_table: true
     drop_temp_views: []
+
+outputs:
+
+  - name: Demographic_output
+    output_df: final_df
+    target_file_format: json
+    output_location: .\output
+
 
