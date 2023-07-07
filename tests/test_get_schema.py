@@ -1,5 +1,5 @@
 import unittest
-import get_schemas
+import get_schemas as get_schemas
 
 
 class TestGetSchema(unittest.TestCase):

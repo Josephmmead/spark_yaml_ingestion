@@ -47,6 +47,6 @@ outputs:
   
   - name: Greater_than_100_output
     output_df: greater_than_100
-    target_file_format: csv
+    target_file_format: json
     output_location: .\output\customer\
 

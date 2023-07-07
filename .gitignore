@@ -1,6 +1,5 @@
 .venv
 /spark-warehouse
-.vscode
 __pycache__
 /output
 /tests/test_resources/output
